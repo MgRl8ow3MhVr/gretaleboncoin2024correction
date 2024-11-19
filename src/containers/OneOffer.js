@@ -7,18 +7,32 @@ const OneOffer = () => {
   return (
     <div className="oneoffer">
       <div className="descriptionblock">
-        {/* insérer le caroussel ici */}
+        <div className="carrousel">
+          {/* // IMAGE PRINCIPALE */}
+          <img alt="pic" />
+          {/* //PREVEIEWS CLIQUABLES */}
+          <div className="previews">
+            <div>
+              <img alt="pic" />
+            </div>
+            <div>
+              <img alt="pic" />
+            </div>
+            <div>
+              <img alt="pic" />
+            </div>
+          </div>
+        </div>
         <hr />
-
         <ul>
-          <span>{fakeDataOneOffer.title}</span>
+          <span>TITRE</span>
           <br />
           <span>prix €</span>
           <br />
           <span>Annonce créée le ...</span>
         </ul>
         <h2>Description</h2>
-        <p>DESCRIPTION DU PRODUIT</p>
+        <p>description du produit</p>
       </div>
       <div className="rightside">
         <Link to="/">

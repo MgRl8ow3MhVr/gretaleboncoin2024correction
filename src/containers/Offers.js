@@ -12,7 +12,6 @@ const Offers = () => {
   console.log(fakeDatas);
   const [pageNum, setpageNum] = useState(1); //current page
   const [data, setData] = useState(null);
-  console.log("pageNum", pageNum);
   //Fecth Data only at first load
   useEffect(() => {
     const fetchData = async () => {
