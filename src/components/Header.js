@@ -1,6 +1,5 @@
 import React from "react";
 import "./Header.css";
-import logo from "../assets/logo.svg";
 import Userpic from "../assets/userpic.svg";
 import { Link } from "react-router-dom";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -9,7 +8,7 @@ const Header = ({ user }) => {
   return (
     <div className="header">
       <Link to="/">
-        <img src={logo} alt="logo" />
+        <img src="https://www.leboncoin.fr/logos/leboncoin.svg" alt="logo" />
       </Link>
 
       <div>
