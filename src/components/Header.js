@@ -5,7 +5,7 @@ import Userpic from "../assets/userpic.svg";
 import { Link } from "react-router-dom";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <div className="header">
       <Link to="/">
@@ -21,7 +21,7 @@ const Header = () => {
 
       <div onClick={() => {}}>
         <img className="userPic" src={Userpic} alt="user" />
-        <div>pierre</div>
+        <div>{user}</div>
         <div>se connecter</div>
       </div>
     </div>
