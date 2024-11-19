@@ -1,11 +1,8 @@
 //import libraries
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-
-//import components
+import "./Offers.css";
 
 const Offers = () => {
-  return <div>Offers</div>;
+  return <div className="offers">OFFERS</div>;
 };
 export default Offers;
