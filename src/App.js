@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+//import packages
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+//import pages called with routes
+import Offers from "./containers/Offers";
+import OneOffer from "./containers/OneOffer";
+import SignUp from "./containers/SignUp";
+import Publish from "./containers/Publish";
+
+//import components
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* # # # # # # # HEADER # # # # # # # # # # # #  */}
+      <Header user={"Pierrecorrecteur"} />
+      <div className="headerGhost"></div>
+      <main>
+        <Routes>
+          {/* # # # # # # # ROUTE FOR 1 Offer DISPLAY # # # # # # # # # # # #  */}
+          <Route path="/oneoffer/:id" element={<OneOffer />} />
+
+          {/* # # # # # # # ROUTE PUBLISH # # # # # # # # # # # #  */}
+          <Route path="/publish" element={<Publish />} />
+
+          {/* # # # # # # # ROUTE FOR SIGN UP # # # # # # # # # # # #  */}
+          <Route path="/signup" element={<SignUp />} />
+
+          {/* # # # # # # # DEFAULT ROUTE : ALL OFFERS  # # # # # # # # # # # #  */}
+          <Route path="/" element={<Offers />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
   );
-}
+};
 
 export default App;
