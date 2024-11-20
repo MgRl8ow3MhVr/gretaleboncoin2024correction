@@ -12,15 +12,15 @@ const OneOffer = () => {
 
   const [data, setData] = useState(null);
 
+  // récupération de l'id de la page grace à useParams
   const params = useParams();
   const myId = params.id;
-  // const {id} =useParams() // si on veut faire le raccourci avec du destructiring
+  // const {id} =useParams() // si on veut faire le raccourci avec du destructuring
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(apiUrl + "/product/tata");
-        // const response = await axios.get(apiUrl + "/product/" + myId);
+        const response = await axios.get(apiUrl + "/product/" + myId);
         setData(response.data);
       } catch (e) {
         alert("il y a eu une erreur desole");
@@ -31,6 +31,8 @@ const OneOffer = () => {
     fetchData();
   }, []);
 
+  // Nouvelle technique pour afficher toute une page de manière conditionnelle
+  // plutot que d'utiliser && à l'intérieur du JSX
   if (data === null) {
     return <div>en chargement</div>;
   }
