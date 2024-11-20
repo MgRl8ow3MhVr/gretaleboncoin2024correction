@@ -31,33 +31,34 @@ const Offers = () => {
   }, [pageNum, searchTerm]);
 
   return (
-    <div className="offers">
+    <div>
       <SearchBar
         goSearch={(s) => {
           setSearchTerm(s);
         }}
       />
-
-      {data && (
-        <Pages
-          pageTotal={data.pageTotal} // pour déterminer le nb d'elements a afficher
-          setpageNum={setpageNum} // pour changer la page courante qunand on clique dessus
-          pageNum={pageNum} // pour mettre en valeur la page courante
-        />
-      )}
-      {data &&
-        data.items.map((item, i) => {
-          return (
-            <Link to={"/oneoffer/" + item.id} key={i}>
-              <OffersItem
-                created_at={item.created_at}
-                photos={item.photos}
-                price={item.price}
-                title={item.title}
-              />
-            </Link>
-          );
-        })}
+      <div className="offers">
+        {data && (
+          <Pages
+            pageTotal={data.pageTotal} // pour déterminer le nb d'elements a afficher
+            setpageNum={setpageNum} // pour changer la page courante qunand on clique dessus
+            pageNum={pageNum} // pour mettre en valeur la page courante
+          />
+        )}
+        {data &&
+          data.items.map((item, i) => {
+            return (
+              <Link to={"/oneoffer/" + item.id} key={i}>
+                <OffersItem
+                  created_at={item.created_at}
+                  photos={item.photos}
+                  price={item.price}
+                  title={item.title}
+                />
+              </Link>
+            );
+          })}
+      </div>
     </div>
   );
 };

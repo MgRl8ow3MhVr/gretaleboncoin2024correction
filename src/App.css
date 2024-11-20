@@ -24,4 +24,5 @@ body {
 /* Content between header and Footer */
 main {
   min-height: calc(100vh - 186px);
+  overflow: hidden;
 }

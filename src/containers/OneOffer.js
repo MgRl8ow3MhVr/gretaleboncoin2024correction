@@ -2,24 +2,55 @@ import "./OneOffer.css";
 import { fakeDataOneOffer } from "./fakedataOneOffer";
 import { Link, useActionData, useSearchParams } from "react-router-dom";
 import KeyboardReturn from "@mui/icons-material/KeyboardReturn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { apiUrl } from "../config";
+import { useParams } from "react-router-dom";
 
 const OneOffer = () => {
-  const created = new Date(fakeDataOneOffer.created_at);
-
   const [imgNum, setImgNum] = useState(0);
+
+  const [data, setData] = useState(null);
+
+  const params = useParams();
+  const myId = params.id;
+  // const {id} =useParams() // si on veut faire le raccourci avec du destructiring
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(apiUrl + "/product/tata");
+        // const response = await axios.get(apiUrl + "/product/" + myId);
+        setData(response.data);
+      } catch (e) {
+        alert("il y a eu une erreur desole");
+        console.log(e);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (data === null) {
+    return <div>en chargement</div>;
+  }
+  // ici, si data est null (au premier chargement de la page en attendant les data qui arrivent de l'api)
+  // le code s'arrête d'apres le if précédent
+
+  // ici, data existe forcément puisque on a passé le if sans rentrer dedans
+  const created = new Date(data.created_at);
 
   return (
     <div className="oneoffer">
       <div className="descriptionblock">
         <div className="carrousel">
           {/* // IMAGE PRINCIPALE */}
-          {fakeDataOneOffer.photos[imgNum] && (
-            <img alt="pic" src={fakeDataOneOffer.photos[imgNum].url} />
+          {data.photos[imgNum] && (
+            <img alt="pic" src={data.photos[imgNum].url} />
           )}
           {/* //PREVIEWS CLIQUABLES */}
           <div className="previews">
-            {fakeDataOneOffer.photos.map((photo, i) => {
+            {data.photos.map((photo, i) => {
               return (
                 <div
                   key={i}
@@ -35,9 +66,9 @@ const OneOffer = () => {
         </div>
         <hr />
         <ul>
-          <span>{fakeDataOneOffer.title}</span>
+          <span>{data.title}</span>
           <br />
-          <span>{fakeDataOneOffer.pr} €</span>
+          <span>{data.pr} €</span>
           <br />
           <span>
             Annonce créée le {created.getFullYear()} à {created.getHours()} h et{" "}
@@ -45,7 +76,7 @@ const OneOffer = () => {
           </span>
         </ul>
         <h2>Description</h2>
-        <p>{fakeDataOneOffer.description}</p>
+        <p>{data.description}</p>
       </div>
       <div className="rightside">
         <Link to="/">
@@ -55,7 +86,7 @@ const OneOffer = () => {
           </div>
         </Link>
         <div className="userInfos">
-          <div>vendeur : {fakeDataOneOffer.creator}</div>
+          <div>vendeur : {data.creator}</div>
           <div>x Annonces en ligne</div>
           <span className="orangeBox">Acheter</span>
         </div>

@@ -17,7 +17,6 @@ const App = () => {
     <Router>
       {/* # # # # # # # HEADER # # # # # # # # # # # #  */}
       <Header user={"Pierrecorrecteur"} />
-      <div className="headerGhost"></div>
       <main>
         <Routes>
           {/* # # # # # # # ROUTE FOR 1 Offer DISPLAY # # # # # # # # # # # #  */}

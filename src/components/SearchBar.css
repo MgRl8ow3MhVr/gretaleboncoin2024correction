@@ -1,7 +1,7 @@
 .searchbar {
   /* height: 200px; */
   /* transform: translate(0px, -50px); */
-  /* position: relative; */
+  position: relative;
   /* bottom: 0px; */
   /* z-index: 200; */
   background-color: blue;
@@ -9,10 +9,10 @@
 
 .orangeEllipse {
   background-color: #f56b2a;
-  height: 200px;
+  height: 150px;
   width: 200%;
   position: absolute;
-  top: -140px;
+  top: -90px;
   left: -50%;
   border-radius: 70%;
   z-index: -1;
