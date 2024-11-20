@@ -1,38 +1,51 @@
 import "./OneOffer.css";
 import { fakeDataOneOffer } from "./fakedataOneOffer";
-import { Link } from "react-router-dom";
+import { Link, useActionData, useSearchParams } from "react-router-dom";
 import KeyboardReturn from "@mui/icons-material/KeyboardReturn";
+import { useState } from "react";
 
 const OneOffer = () => {
+  const created = new Date(fakeDataOneOffer.created_at);
+
+  const [imgNum, setImgNum] = useState(0);
+
   return (
     <div className="oneoffer">
       <div className="descriptionblock">
         <div className="carrousel">
           {/* // IMAGE PRINCIPALE */}
-          <img alt="pic" />
-          {/* //PREVEIEWS CLIQUABLES */}
+          {fakeDataOneOffer.photos[imgNum] && (
+            <img alt="pic" src={fakeDataOneOffer.photos[imgNum].url} />
+          )}
+          {/* //PREVIEWS CLIQUABLES */}
           <div className="previews">
-            <div>
-              <img alt="pic" />
-            </div>
-            <div>
-              <img alt="pic" />
-            </div>
-            <div>
-              <img alt="pic" />
-            </div>
+            {fakeDataOneOffer.photos.map((photo, i) => {
+              return (
+                <div
+                  key={i}
+                  onClick={() => {
+                    setImgNum(i);
+                  }}
+                >
+                  <img alt="pic" src={photo.url} />
+                </div>
+              );
+            })}
           </div>
         </div>
         <hr />
         <ul>
-          <span>TITRE</span>
+          <span>{fakeDataOneOffer.title}</span>
           <br />
-          <span>prix €</span>
+          <span>{fakeDataOneOffer.pr} €</span>
           <br />
-          <span>Annonce créée le ...</span>
+          <span>
+            Annonce créée le {created.getFullYear()} à {created.getHours()} h et{" "}
+            {created.getMinutes()}mn
+          </span>
         </ul>
         <h2>Description</h2>
-        <p>description du produit</p>
+        <p>{fakeDataOneOffer.description}</p>
       </div>
       <div className="rightside">
         <Link to="/">
@@ -42,7 +55,7 @@ const OneOffer = () => {
           </div>
         </Link>
         <div className="userInfos">
-          <div>vendeur : nom du vendeur</div>
+          <div>vendeur : {fakeDataOneOffer.creator}</div>
           <div>x Annonces en ligne</div>
           <span className="orangeBox">Acheter</span>
         </div>
