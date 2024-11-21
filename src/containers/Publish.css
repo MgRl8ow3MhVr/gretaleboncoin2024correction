@@ -1,0 +1,52 @@
+/* # # # # # # # #   ALL FORMS   # # # # # # #  */
+
+/* Form contenair */
+.formpage {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0px 60px 0px;
+  height: 100%;
+}
+
+form {
+  background-color: white;
+  box-shadow: 4px 4px 10px #cdcccc;
+  padding: 50px;
+  border-radius: 5px;
+}
+
+hr {
+  background: #f56c2a;
+  height: 5px;
+  border: 0px;
+  margin: 10px 0px 25px 0px;
+}
+
+h1 {
+  font-size: 1.3rem;
+}
+
+h2 {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+input {
+  margin: 5px 0px 20px 0px;
+  border-radius: 3px;
+  border: solid 1px rgb(214, 211, 211);
+  font-size: 0.8rem;
+  width: 100%;
+  padding: 6px;
+}
+input[type="submit"] {
+  background-color: #4083d7;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 10px 0px 20px;
+}
+input[type="submit"]:hover {
+  cursor: pointer;
+}
