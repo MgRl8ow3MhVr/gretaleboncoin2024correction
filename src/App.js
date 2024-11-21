@@ -1,7 +1,7 @@
 //import packages
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import "react-toastify/dist/ReactToastify.css";
 //import pages called with routes
 import Offers from "./containers/Offers";
 import OneOffer from "./containers/OneOffer";
@@ -11,6 +11,7 @@ import Publish from "./containers/Publish";
 //import components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { ToastContainer, toast } from "react-toastify";
 
 const App = () => {
   return (
@@ -33,6 +34,12 @@ const App = () => {
         </Routes>
       </main>
       <Footer />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        hideProgressBar={true}
+        theme="light"
+      />
     </Router>
   );
 };

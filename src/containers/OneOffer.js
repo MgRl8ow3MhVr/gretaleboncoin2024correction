@@ -1,15 +1,14 @@
 import "./OneOffer.css";
-import { fakeDataOneOffer } from "./fakedataOneOffer";
-import { Link, useActionData, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import KeyboardReturn from "@mui/icons-material/KeyboardReturn";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { apiUrl } from "../config";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const OneOffer = () => {
   const [imgNum, setImgNum] = useState(0);
-
   const [data, setData] = useState(null);
 
   // récupération de l'id de la page grace à useParams
@@ -23,7 +22,7 @@ const OneOffer = () => {
         const response = await axios.get(apiUrl + "/product/" + myId);
         setData(response.data);
       } catch (e) {
-        alert("il y a eu une erreur desole");
+        toast("il y a eu une erreur, desolé");
         console.log(e);
       }
     };
