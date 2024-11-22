@@ -23,7 +23,6 @@ const OneOffer = () => {
         setData(response.data);
       } catch (e) {
         toast("il y a eu une erreur, desolé");
-        console.log(e);
       }
     };
 

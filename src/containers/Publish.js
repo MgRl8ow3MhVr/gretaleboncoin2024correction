@@ -7,10 +7,11 @@ import "./Publish.css";
 
 import { apiUrl, store_id } from "../config";
 
-const Upload = ({ token, username }) => {
+const Upload = ({ token, user }) => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
+  const [photos, setPhotos] = useState([]);
 
   const navigate = useNavigate();
 
@@ -22,13 +23,20 @@ const Upload = ({ token, username }) => {
       data.append("description", desc);
       data.append("price", price);
       data.append("store_id", store_id);
-      data.append("creator", "pierre");
+      data.append("creator", user ? user.userName : "");
+      photos.forEach((file) => {
+        data.append("files[]", file);
+      });
 
-      await axios.post(apiUrl + "/product", data);
+      const response = await axios.post(apiUrl + "/product", data, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Attach the token
+        },
+      });
+
       toast("l'offre est bien en ligne !", { type: "success" });
       navigate("/");
     } catch (e) {
-      console.log(e);
       toast("il y a eu un probleme", { type: "error" });
       navigate("/");
     }
@@ -64,6 +72,7 @@ const Upload = ({ token, username }) => {
           }}
         ></input>
         <h2>Photo*</h2>
+        <SimpleUpload setPhotos={setPhotos} />
 
         <input type="submit" value="valider"></input>
       </form>

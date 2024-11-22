@@ -4,8 +4,6 @@ import "./SearchBar.css";
 const SearchBar = ({ goSearch }) => {
   const [inputSearch, setInputSearch] = useState("");
 
-  console.log(inputSearch);
-
   return (
     <div className="searchbar">
       <div className="orangeEllipse"></div>

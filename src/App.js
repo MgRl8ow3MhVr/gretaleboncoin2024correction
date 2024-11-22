@@ -1,5 +1,6 @@
 //import packages
 import "./App.css";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 //import pages called with routes
@@ -11,20 +12,53 @@ import Publish from "./containers/Publish";
 //import components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import LogBoxModal from "./components/LogBoxModal";
 
 const App = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
+  const loginOk = (token, user) => {
+    setToken(token);
+    setOpenModal(false);
+    setUser(user);
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
+  const disconnect = () => {
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
+
   return (
     <Router>
       {/* # # # # # # # HEADER # # # # # # # # # # # #  */}
-      <Header user={"Pierrecorrecteur"} />
+
+      <Header
+        token={token}
+        user={user}
+        setOpenModal={setOpenModal}
+        disconnect={disconnect}
+      />
+
+      {openModal && (
+        <LogBoxModal loginOk={loginOk} setOpenModal={setOpenModal} />
+      )}
       <main>
         <Routes>
           {/* # # # # # # # ROUTE FOR 1 Offer DISPLAY # # # # # # # # # # # #  */}
           <Route path="/oneoffer/:id" element={<OneOffer />} />
 
           {/* # # # # # # # ROUTE PUBLISH # # # # # # # # # # # #  */}
-          <Route path="/publish" element={<Publish />} />
+          <Route
+            path="/publish"
+            element={<Publish token={token} user={user} />}
+          />
 
           {/* # # # # # # # ROUTE FOR SIGN UP # # # # # # # # # # # #  */}
           <Route path="/signup" element={<SignUp />} />
